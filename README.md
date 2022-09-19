@@ -15,6 +15,10 @@ se implementan las siguientes tecnologias
     - Repositorio remoto utilizado para guardar el historial de git
 - ## Archivo .env
   - Para almacenar las credenciales y configuraciones se utilizo un archivo de configuracion con variables de entorno
+- ## Bootstrap
+  - Framework frontend para dar los estilos y colores a la interfaz de usuario 
+
+
 ## Capturas de la aplicacion funcionando desde containers de Docker
 ![lista_de_tareas](crud_main_page.png)
 
