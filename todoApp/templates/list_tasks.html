@@ -13,21 +13,36 @@
     <link rel="stylesheet" href="{% static "main.css" %}">
   </head>
   <body>
-  <h1>Tareas</h1>
-  <form action="{% url 'create_new_task' %}" method="post">
-      {% csrf_token %}
-      <input type="text" name="form_title" placeholder="write-title">
-      <textarea name="form_description" rows="3" placeholder="write-task-description"></textarea>
-      <button>Guardar</button>
-  </form>
-  {% for task in tasks %}
-      <div>
-        <h4>{{ task.title }}</h4>
-        <p>{{ task.description }}</p>
-        <button>Delete</button>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4 offset-md-4">
+              <h1 class="display-5 fw-bold">Tareas</h1>
+              <form action="{% url 'create_new_task' %}" method="post" class="card card-body bg-secondary">
+                  {% csrf_token %}
+                  <label for="form_title">Titulo</label>
+                  <input type="text" name="form_title" placeholder="write-title" class="form-control mb-2">
+
+                  <label for="form_description">Descripcion</label>
+                  <textarea name="form_description" rows="3" placeholder="write-task-description" class="form-control mb-2"></textarea>
+                  <button class="btn btn-success">Guardar</button>
+              </form>
+              {% for task in tasks %}
+                  <div class="card card-body text-dark mt-2 d-flex flex-row justify-content-between">
+                      <div>
+                        <h4>{{ task.title }}</h4>
+                        <p>{{ task.description }}</p>
+                      </div>
+                      <form action="{% url 'delete_task' task.id%}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                  </div>
+              {% empty %}
+                <h1 class="display-6 text-center">No Hay Tareas Pendientes</h1>
+              {% endfor %}
       </div>
-  {% empty %}
-    <h1>No Hay Tareas Pendientes</h1>
-  {% endfor %}
+  </div>
+
+
   </body>
 </html>
