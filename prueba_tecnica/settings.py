@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-!o^x98u-(55=f36+&^36-h$g)lj@(te73yf(iqp-@6a97yktdx"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -74,15 +74,15 @@ WSGI_APPLICATION = "prueba_tecnica.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+import os
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eliecer_django',
-        'USER': 'django_prueba',
-        'PASSWORD': 'eliecer-django',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('POSTGRES_HOST_SERVICE'),
+        'PORT': os.environ.get('POSTGRES_PORT'),
     }
 }
 

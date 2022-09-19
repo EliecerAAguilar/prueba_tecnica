@@ -1,3 +1,7 @@
+body{
+    background: #202020;
+    color: white;
+}
 /* Enable darkmode in a Bootstrap Page */
 @media (prefers-color-scheme: dark) {
     body {
