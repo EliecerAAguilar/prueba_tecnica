@@ -1,0 +1,35 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- hojas de estilos propios -->
+    <title>Update records</title>
+    <link rel="stylesheet" href="{% static "main.css" %}">
+  </head>
+  <body>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4 offset-md-4">
+              <h1 class="display-6 fw-bold">Actualizar Registro</h1>
+              <form action="{% url 'updated_task' task.id %}" method="post" class="card card-body bg-secondary">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{ task.id }}">
+                  <label for="form_title">Titulo</label>
+                  <input type="text" name="form_title" value="{{task.title}}" class="form-control mb-2">
+
+                  <label for="form_description">Descripcion</label>
+                  <textarea name="form_description" rows="3" placeholder="{{ task.description }}" class="form-control mb-2"></textarea>
+                  <button class="btn btn-success">Actualizar</button>
+              </form>
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

@@ -26,23 +26,32 @@
                   <textarea name="form_description" rows="3" placeholder="write-task-description" class="form-control mb-2"></textarea>
                   <button class="btn btn-success">Guardar</button>
               </form>
+
               {% for task in tasks %}
                   <div class="card card-body text-dark mt-2 d-flex flex-row justify-content-between">
                       <div>
                         <h4>{{ task.title }}</h4>
                         <p>{{ task.description }}</p>
                       </div>
-                      <form action="{% url 'delete_task' task.id%}" method="post">
+
+                      <form action="{% url 'update' task.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-warning btn-sm">Update</button>
+                      </form>
+
+                      <form action="{% url 'delete_task' task.id %}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-danger btn-sm">Delete</button>
                       </form>
+
                   </div>
               {% empty %}
                 <h1 class="display-6 text-center">No Hay Tareas Pendientes</h1>
               {% endfor %}
+          </div>
       </div>
-  </div>
+</div>
 
 
-  </body>
+</body>
 </html>
